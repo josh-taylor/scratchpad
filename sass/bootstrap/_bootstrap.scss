@@ -2290,10 +2290,10 @@ table th[class*="span"],
 /* White icons with optional class, or on hover/focus/active states of certain elements */
 
 .icon-white,
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
+.nav-pills > li > a.active > [class^="icon-"],
+.nav-pills > li > a.active > [class*=" icon-"],
+.nav-list > li > a.active > [class^="icon-"],
+.nav-list > li > a.active > [class*=" icon-"],
 .navbar-inverse .nav > .active > a > [class^="icon-"],
 .navbar-inverse .nav > .active > a > [class*=" icon-"],
 .dropdown-menu > li > a:hover > [class^="icon-"],
@@ -4071,9 +4071,9 @@ input[type="submit"].btn.btn-mini {
 	border-color: #eeeeee #eeeeee #dddddd;
 }
 
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover,
-.nav-tabs > .active > a:focus {
+.nav-tabs > li > a.active,
+.nav-tabs > li > a.active:hover,
+.nav-tabs > li > a.active:focus {
 	color: #555555;
 	cursor: default;
 	background-color: #ffffff;

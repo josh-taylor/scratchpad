@@ -15,13 +15,50 @@
 </head>
 <body>
 
-  <script type="text/x-handlebars">
-    
-  </script>
+<script type="text/x-handlebars">
+    <div class="container-fluid">
+	    <div class="span12">
+		    <h1>Scratchpad <small><a href="javascript:;">Get started now!</a></small></h1>
+	    </div>
+	    <div class="span3">
+		    <ul class="nav nav-tabs nav-stacked">
+			    <li>{{#linkTo 'notes.index'}}<i class="icon-chevron-right pull-right"></i> All Notes{{/linkTo}}</li>
+			    <li>{{#linkTo 'notes.new'}}<i class="icon-chevron-right pull-right"></i> Add Note{{/linkTo}}</li>
+			    <li>{{#linkTo 'notes.my_notes'}}<i class="icon-chevron-right pull-right"></i> My Notes{{/linkTo}}</li>
+			    <li>{{#linkTo 'notes.search'}}<i class="icon-chevron-right pull-right"></i> Search Notes{{/linkTo}}</li>
+		    </ul>
+	    </div>
+	    <div class="span9">
+			{{outlet}}
+	    </div>
+    </div>
+</script>
 
-  <script type="text/x-handlebars" data-template-name="index">
+<script type="text/x-handlebars" data-template-name="notes/index">
+	<p class="lead">
+		Scratchpad is a great place to post common problems (and their solutions)
+		that you come against each day.
+	</p>
+	<p>
+		You're able to tag notes and use the amazing search function to help you
+		find exactly what you're looking for. Below are the most popular notes.
+	</p>
+	<h4>All Notes</h4>
+	<ul>
+	{{#each note in content}}
+		<li>{{#linkTo 'note' note}}{{note.name}}{{/linkTo}}</li>
+	{{/each}}
+	</ul>
+</script>
 
-  </script>
+<script type="text/x-handlebars" data-template-name="note">
+	<dl>
+		<dt>Name</dt>
+		<dd>{{name}}</dd>
+		<dt>Content</dt>
+		<dd>{{{note}}}</dd>
+	</dl>
+</script>
 
 </body>
 </html>
