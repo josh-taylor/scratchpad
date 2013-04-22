@@ -1,0 +1,8 @@
+# IDE Settings
+.idea
+
+# Sass
+.sass-cache
+
+# Directory files
+.DS_Store
