@@ -48,31 +48,37 @@
 <script type="text/x-handlebars" data-template-name="notes/index">
 	<ul class="unstyled notes-list">
 	{{#each note in content}}
-		<li>
-            <div class="on-hover pull-right">
-                {{#linkTo 'note.edit' note class="btn"}}
-                    <i class="icon-pencil"></i>
-                    Edit
-                {{/linkTo}}
-	            <div class="btn-group">
-	                <a href="javascript:;" class="btn">
-	                    <i class="icon-arrow-up"></i>
-	                </a>
-		            <a href="javascript:;" class="btn">
-			            <i class="icon-arrow-down"></i>
-		            </a>
-		        </div>
-            </div>
-
-            <h3>
-                {{#linkTo 'note' note}}{{note.name}}{{/linkTo}}
-            </h3>
-            <p>
-                {{#each tag in note.tags}}
-                {{#linkTo 'tag' tag}}<span class="label">{{tag.name}}</span>{{/linkTo}}
-                {{/each}}
-                &ndash; {{note.username}}
-            </p>
+		<li class="row-fluid">
+			<div class="span1 text-center text-success">
+				<h1>{{note.votes}}</h1>
+			</div>
+			<div class="span7">
+	            <h3>
+	                {{#linkTo 'note' note}}{{note.name}}{{/linkTo}}
+	            </h3>
+	            <p>
+	                {{#each tag in note.tags}}
+	                {{#linkTo 'tag' tag}}<span class="label">{{tag.name}}</span>{{/linkTo}}
+	                {{/each}}
+	                &ndash; {{note.username}}
+	            </p>
+			</div>
+			<div class="span4">
+				<div class="on-hover pull-right">
+					{{#linkTo 'note.edit' note class="btn"}}
+					<i class="icon-pencil"></i>
+					Edit
+					{{/linkTo}}
+					<div class="btn-group">
+						<a href="javascript:;" class="btn">
+							<i class="icon-arrow-up"></i>
+						</a>
+						<a href="javascript:;" class="btn">
+							<i class="icon-arrow-down"></i>
+						</a>
+					</div>
+				</div>
+			</div>
         </li>
 	{{/each}}
 	</ul>

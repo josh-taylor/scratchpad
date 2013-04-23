@@ -28,6 +28,7 @@ App.Store = DS.Store.extend({
 App.Note = DS.Model.extend({
 	name: DS.attr('string'),
 	note: DS.attr('string'),
+	votes: DS.attr('number'),
 	username: DS.attr('string'),
 	tags: DS.hasMany('App.Tag')
 })

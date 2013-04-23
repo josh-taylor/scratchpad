@@ -3,6 +3,7 @@ App.Note.FIXTURES = [
 		id: 1,
 		name: "Sub-menu list item width",
 		note: "<p>How to solve the issue:</p><pre>li {<br />&nbsp;&nbsp;&nbsp;&nbsp;white-space: nowrap;<br />}</pre>",
+		votes: 2,
 		username: "josh",
 		tags: [1,2]
 	},
@@ -10,6 +11,7 @@ App.Note.FIXTURES = [
 		id: 2,
 		name: "Another scratchpad note",
 		note: "<p>Yet another scratchpad note</p>",
+		votes: -1,
 		username: "josh",
 		tags: [1]
 	},
@@ -17,6 +19,7 @@ App.Note.FIXTURES = [
 		id: 3,
 		name: "A JavaScript issue",
 		note: "<p>Stopping jQuery conflicting</p><pre>jQuery.noConflict();</pre>",
+		votes: 14,
 		username: "josh",
 		tags: [3]
 	},
@@ -24,6 +27,7 @@ App.Note.FIXTURES = [
 		id: 4,
 		name: "An issue containing everything",
 		note: "<p>This is such a generic note it needs all tags</p>",
+		votes: 2,
 		username: "josh",
 		tags: [1,2,3]
 	}
