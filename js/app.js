@@ -4,6 +4,7 @@ App.Router.map(function() {
 	this.resource('notes', { path: '/' }, function() {
 		this.resource('note', { path: '/notes/:note_id' }, function() {
 			this.route('edit');
+			this.route('delete');
 		});
 		this.route('new');
 	});
