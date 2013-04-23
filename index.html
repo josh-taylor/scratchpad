@@ -16,21 +16,25 @@
 <body>
 
 <script type="text/x-handlebars">
-    <div class="container-fluid">
-	    <div class="span12">
-		    <h1>Scratchpad <small><a href="javascript:;">Get started now!</a></small></h1>
-	    </div>
-	    <div class="span3">
-		    <ul class="nav nav-tabs nav-stacked">
-			    <li>{{#linkTo 'notes.index'}}<i class="icon-chevron-right pull-right"></i> All Notes{{/linkTo}}</li>
-			    <li>{{#linkTo 'notes.new'}}<i class="icon-chevron-right pull-right"></i> Add Note{{/linkTo}}</li>
-			    <li>{{#linkTo 'notes.my_notes'}}<i class="icon-chevron-right pull-right"></i> My Notes{{/linkTo}}</li>
-			    <li>{{#linkTo 'notes.search'}}<i class="icon-chevron-right pull-right"></i> Search Notes{{/linkTo}}</li>
-		    </ul>
-	    </div>
-	    <div class="span9">
-			{{outlet}}
-	    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12">
+                <h1>Scratchpad <small><a href="javascript:;">Get started now!</a></small></h1>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <ul class="nav nav-tabs nav-stacked">
+                    <li>{{#linkTo 'notes.index'}}<i class="icon-chevron-right pull-right"></i> All Notes{{/linkTo}}</li>
+                    <li>{{#linkTo 'notes.new'}}<i class="icon-chevron-right pull-right"></i> Add Note{{/linkTo}}</li>
+                    <li>{{#linkTo 'notes.my_notes'}}<i class="icon-chevron-right pull-right"></i> My Notes{{/linkTo}}</li>
+                    <li>{{#linkTo 'notes.search'}}<i class="icon-chevron-right pull-right"></i> Search Notes{{/linkTo}}</li>
+                </ul>
+            </div>
+            <div class="span9">
+                {{outlet}}
+            </div>
+        </div>
     </div>
 </script>
 
