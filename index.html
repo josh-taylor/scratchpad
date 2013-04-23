@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row-fluid">
             <div class="span12">
-                <h1>Scratchpad <small><a href="javascript:;">Get started now!</a></small></h1>
+                <h1>Scratchpad</h1>
             </div>
         </div>
         <div class="row-fluid">
@@ -42,7 +42,9 @@
 	<h4>All Notes</h4>
 	<ul>
 	{{#each note in content}}
-		<li>{{#linkTo 'note' note}}{{note.name}}{{/linkTo}}</li>
+		<li>
+            {{#linkTo 'note' note}}{{note.name}}{{/linkTo}}
+        </li>
 	{{/each}}
 	</ul>
 </script>
@@ -51,6 +53,14 @@
 	<dl>
 		<dt>Name</dt>
 		<dd>{{name}}</dd>
+        <dt>Tags</dt>
+        <dd>
+        {{#each tag in tags}}
+            <span class="label">{{tag.name}}</span>
+        {{else}}
+            <p>No tags assigned to note...</p>
+        {{/each}}
+        </dd>
 		<dt>Content</dt>
 		<dd>{{{note}}}</dd>
 	</dl>

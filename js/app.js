@@ -17,7 +17,13 @@ App.Store = DS.Store.extend({
 
 App.Note = DS.Model.extend({
 	name: DS.attr('string'),
-	note: DS.attr('string')
+	note: DS.attr('string'),
+	tags: DS.hasMany('App.Tag')
+})
+
+App.Tag = DS.Model.extend({
+	name: DS.attr('string'),
+	notes: DS.hasMany('App.Note')
 })
 
 App.NotesIndexRoute = Ember.Route.extend({
