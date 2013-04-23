@@ -2,11 +2,20 @@ App = Ember.Application.create();
 
 App.Router.map(function() {
 	this.resource('notes', { path: '/' }, function() {
-		this.resource('note', { path: '/notes/:note_id'});
-
+		this.resource('note', { path: '/notes/:note_id' }, function() {
+			this.route('edit');
+		});
 		this.route('new');
-		this.route('my_notes');
-		this.route('search');
+	});
+
+	this.resource('tags', function() {
+		this.resource('tag', { path: '/:tag_id' });
+	});
+
+	this.resource('search');
+
+	this.resource('account', function() {
+		this.route('notes');
 	});
 })
 
@@ -18,6 +27,7 @@ App.Store = DS.Store.extend({
 App.Note = DS.Model.extend({
 	name: DS.attr('string'),
 	note: DS.attr('string'),
+	username: DS.attr('string'),
 	tags: DS.hasMany('App.Tag')
 })
 

@@ -1,3 +1,13 @@
 @import "compass";
 @import "bootstrap/bootstrap";
 @import "bootstrap/responsive";
+
+.notes-list {
+	li .on-hover {
+		display: none;
+	}
+
+	li:hover .on-hover {
+		display: block;
+	}
+}
