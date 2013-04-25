@@ -8716,11 +8716,3 @@ a.badge:focus {
     overflow: visible !important;
   }
 }
-/* line 6, ../sass/style.scss */
-.notes-list li .on-hover {
-  display: none;
-}
-/* line 10, ../sass/style.scss */
-.notes-list li:hover .on-hover {
-  display: block;
-}
