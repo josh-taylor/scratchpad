@@ -32,7 +32,8 @@ App.Note = DS.Model.extend({
 	username: DS.attr('string'),
 	tags: DS.hasMany('App.Tag'),
     userHasUpvoted: DS.attr('boolean'),
-    userHasDownvoted: DS.attr('boolean')
+    userHasDownvoted: DS.attr('boolean'),
+    created: DS.attr('date')
 })
 
 App.Tag = DS.Model.extend({

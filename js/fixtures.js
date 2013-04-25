@@ -7,7 +7,8 @@ App.Note.FIXTURES = [
 		username: "josh",
 		tags: [1,2],
         userHasUpvoted: false,
-        userHasDownvoted: false
+        userHasDownvoted: false,
+        created: '2013-04-22'
 	},
 	{
 		id: 2,
@@ -17,7 +18,8 @@ App.Note.FIXTURES = [
 		username: "josh",
 		tags: [1],
         userHasUpvoted: false,
-        userHasDownvoted: false
+        userHasDownvoted: false,
+        created: '2013-04-23'
 	},
 	{
 		id: 3,
@@ -27,7 +29,8 @@ App.Note.FIXTURES = [
 		username: "josh",
 		tags: [3],
         userHasUpvoted: true,
-        userHasDownvoted: false
+        userHasDownvoted: false,
+        created: '2013-04-25'
 	},
 	{
 		id: 4,
@@ -37,7 +40,8 @@ App.Note.FIXTURES = [
 		username: "josh",
 		tags: [1,2,3],
         userHasUpvoted: false,
-        userHasDownvoted: false
+        userHasDownvoted: false,
+        created: '2013-04-25'
 	}
 ]
 
