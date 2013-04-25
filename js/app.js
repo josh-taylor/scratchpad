@@ -33,7 +33,14 @@ App.Note = DS.Model.extend({
 	tags: DS.hasMany('App.Tag'),
     userHasUpvoted: DS.attr('boolean'),
     userHasDownvoted: DS.attr('boolean'),
-    created: DS.attr('date')
+    created: DS.attr('date'),
+
+	hasPositiveVoteCount: function() {
+		if (this.get('votes') >= 0) {
+			return true;
+		}
+		return false;
+	}.property('votes')
 })
 
 App.Tag = DS.Model.extend({

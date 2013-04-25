@@ -51,7 +51,7 @@
 	<ul class="unstyled notes-list">
 	{{#each note in content}}
 		<li class="row-fluid">
-			<div class="span1 text-center text-success">
+			<div {{bindAttr class=":span1 :text-center note.hasPositiveVoteCount:text-success:text-error"}}>
 				<h1>{{note.votes}}</h1>
 			</div>
 			<div class="span7">
@@ -82,7 +82,7 @@
                     <i class="icon-arrow-down"></i>
                     </button>
                 </div>
-                <span class="text-success">{{votes}}</span>
+                <span {{bindAttr class="hasPositiveVoteCount:text-success:text-error"}}>{{votes}}</span>
                 &ndash;
             {{#if isEditingName}}
 				{{view App.NoteNameTextField valueBinding="name"}}
