@@ -1,3 +1,26 @@
 @import "compass";
 @import "bootstrap/bootstrap";
 @import "bootstrap/responsive";
+
+#composer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #f2f2f2;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+	width: 100%;
+
+	.container {
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		$textareaWidth: 460px;
+		$textareaHeight: 150px;
+		textarea {
+			min-width: $textareaWidth;
+			max-width: $textareaWidth;
+			min-height: $textareaHeight;
+			max-height: $textareaHeight;
+		}
+	}
+}

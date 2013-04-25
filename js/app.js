@@ -54,6 +54,29 @@ App.NotesIndexRoute = Ember.Route.extend({
 	}
 })
 
+App.ApplicationController = Ember.Controller.extend({
+	composeView: null,
+	isComposeOpen: false,
+
+	openCompose: function() {
+		this.set('isComposeOpen', true);
+
+		if (!this.get('composeView')) {
+			var view = App.ComposeView.create({ controller: this });
+			view.appendTo($('#main'));
+			this.set('composeView', view);
+		}
+	},
+	closeCompose: function() {
+		var view = this.get('composeView');
+		if (view) {
+			view.remove();
+			this.set('isComposeOpen', false);
+			this.set('composeView', null);
+		}
+	}
+})
+
 App.NoteController = Ember.ObjectController.extend({
     canVote: function() {
         if (this.get('userHasUpvoted') || this.get('userHasDownvoted')) {
@@ -90,4 +113,12 @@ App.NoteNameTextField = Ember.TextField.extend({
         this.set('controller.isEditingName', false);
         this.get('controller.store').commit();
     }
+})
+
+App.ComposeView = Ember.View.extend({
+	templateName: 'compose',
+
+	closeCompose: function() {
+		console.log('Closing compose!');
+	}
 })
