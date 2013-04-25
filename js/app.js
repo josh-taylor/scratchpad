@@ -67,5 +67,20 @@ App.NoteController = Ember.ObjectController.extend({
             this.set('userHasDownvoted', true);
             this.get('store').commit();
         }
+    },
+
+    isEditingName: false,
+    toggleEditName: function() {
+        this.toggleProperty('isEditingName');
+    }
+})
+
+App.NoteNameTextField = Ember.TextField.extend({
+    didInsertElement: function() {
+        this.$().focus();
+    },
+    focusOut: function(evt) {
+        this.set('controller.isEditingName', false);
+        this.get('controller.store').commit();
     }
 })

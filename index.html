@@ -82,7 +82,11 @@
                 </div>
                 <span class="text-success">{{votes}}</span>
                 &ndash;
-				{{name}}
+            {{#if isEditingName}}
+				{{view App.NoteNameTextField valueBinding="name"}}
+            {{else}}
+                <span {{action toggleEditName on="click"}}>{{name}}</span>
+            {{/if}}
 			</h3>
 		</div>
 	</div>
