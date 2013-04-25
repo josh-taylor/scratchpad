@@ -63,22 +63,6 @@
 	                &ndash; {{note.username}}
 	            </p>
 			</div>
-			<div class="span4">
-				<div class="on-hover pull-right">
-					{{#linkTo 'note.edit' note class="btn"}}
-					<i class="icon-pencil"></i>
-					Edit
-					{{/linkTo}}
-					<div class="btn-group">
-						<button {{action upvote target="controller"}} {{bindAttr class=":btn note.userHasUpvoted:btn-success note.userHasUpvoted:disabled note.userHasDownvoted:disabled"}}>
-							<i class="icon-arrow-up"></i>
-						</button>
-						<button {{action downvote}} {{bindAttr class=":btn note.userHasDownvoted:btn-error note.userHasDownvoted:disabled note.userHasUpvoted:disabled"}}>
-							<i class="icon-arrow-down"></i>
-						</button>
-					</div>
-				</div>
-			</div>
         </li>
 	{{/each}}
 	</ul>
@@ -88,6 +72,16 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<h3>
+                <div class="btn-group">
+                    <button {{action upvote target="controller"}} {{bindAttr class=":btn :btn-mini userHasUpvoted:btn-success userHasUpvoted:disabled userHasDownvoted:disabled"}}>
+                    <i class="icon-arrow-up"></i>
+                    </button>
+                    <button {{action downvote}} {{bindAttr class=":btn :btn-mini userHasDownvoted:btn-error userHasDownvoted:disabled userHasUpvoted:disabled"}}>
+                    <i class="icon-arrow-down"></i>
+                    </button>
+                </div>
+                <span class="text-success">{{votes}}</span>
+                &ndash;
 				{{name}}
 			</h3>
 		</div>
