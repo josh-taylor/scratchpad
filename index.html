@@ -70,12 +70,12 @@
 					Edit
 					{{/linkTo}}
 					<div class="btn-group">
-						<a href="javascript:;" class="btn">
+						<button {{action upvote target="controller"}} {{bindAttr class=":btn note.userHasUpvoted:btn-success note.userHasUpvoted:disabled note.userHasDownvoted:disabled"}}>
 							<i class="icon-arrow-up"></i>
-						</a>
-						<a href="javascript:;" class="btn">
+						</button>
+						<button {{action downvote}} {{bindAttr class=":btn note.userHasDownvoted:btn-error note.userHasDownvoted:disabled note.userHasUpvoted:disabled"}}>
 							<i class="icon-arrow-down"></i>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>

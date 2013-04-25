@@ -30,7 +30,9 @@ App.Note = DS.Model.extend({
 	note: DS.attr('string'),
 	votes: DS.attr('number'),
 	username: DS.attr('string'),
-	tags: DS.hasMany('App.Tag')
+	tags: DS.hasMany('App.Tag'),
+    userHasUpvoted: DS.attr('boolean'),
+    userHasDownvoted: DS.attr('boolean')
 })
 
 App.Tag = DS.Model.extend({
@@ -43,3 +45,4 @@ App.NotesIndexRoute = Ember.Route.extend({
 		return App.Note.find();
 	}
 })
+

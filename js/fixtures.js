@@ -5,7 +5,9 @@ App.Note.FIXTURES = [
 		note: "<p>How to solve the issue:</p><pre>li {<br />&nbsp;&nbsp;&nbsp;&nbsp;white-space: nowrap;<br />}</pre>",
 		votes: 2,
 		username: "josh",
-		tags: [1,2]
+		tags: [1,2],
+        userHasUpvoted: false,
+        userHasDownvoted: false
 	},
 	{
 		id: 2,
@@ -13,7 +15,9 @@ App.Note.FIXTURES = [
 		note: "<p>Yet another scratchpad note</p>",
 		votes: -1,
 		username: "josh",
-		tags: [1]
+		tags: [1],
+        userHasUpvoted: false,
+        userHasDownvoted: false
 	},
 	{
 		id: 3,
@@ -21,7 +25,9 @@ App.Note.FIXTURES = [
 		note: "<p>Stopping jQuery conflicting</p><pre>jQuery.noConflict();</pre>",
 		votes: 14,
 		username: "josh",
-		tags: [3]
+		tags: [3],
+        userHasUpvoted: true,
+        userHasDownvoted: false
 	},
 	{
 		id: 4,
@@ -29,7 +35,9 @@ App.Note.FIXTURES = [
 		note: "<p>This is such a generic note it needs all tags</p>",
 		votes: 2,
 		username: "josh",
-		tags: [1,2,3]
+		tags: [1,2,3],
+        userHasUpvoted: false,
+        userHasDownvoted: false
 	}
 ]
 
