@@ -47,3 +47,25 @@ App.NotesIndexRoute = Ember.Route.extend({
 	}
 })
 
+App.NoteController = Ember.ObjectController.extend({
+    canVote: function() {
+        if (this.get('userHasUpvoted') || this.get('userHasDownvoted')) {
+            return false;
+        }
+        return true;
+    }.property('userHasUpvoted', 'userHasDownvoted'),
+    upvote: function() {
+        if (this.get('canVote')) {
+            this.incrementProperty('votes');
+            this.set('userHasUpvoted', true);
+            this.get('store').commit();
+        }
+    },
+    downvote: function() {
+        if (this.get('canVote')) {
+            this.decrementProperty('votes');
+            this.set('userHasDownvoted', true);
+            this.get('store').commit();
+        }
+    }
+})
