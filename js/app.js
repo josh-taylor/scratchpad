@@ -1,97 +1,97 @@
 App = Ember.Application.create();
 
-App.Router.map(function() {
-	this.resource('notes', { path: '/' }, function() {
-		this.resource('note', { path: '/notes/:note_id' }, function() {
-			this.route('edit');
-			this.route('delete');
-		});
-		this.route('new');
-	});
+App.Router.map(function () {
+    this.resource('notes', { path: '/' }, function () {
+        this.resource('note', { path: '/notes/:note_id' }, function () {
+            this.route('edit');
+            this.route('delete');
+        });
+        this.route('new');
+    });
 
-	this.resource('tags', function() {
-		this.resource('tag', { path: '/:tag_id' });
-	});
+    this.resource('tags', function () {
+        this.resource('tag', { path: '/:tag_id' });
+    });
 
-	this.resource('search');
+    this.resource('search');
 
-	this.resource('account', function() {
-		this.route('notes');
-	});
+    this.resource('account', function () {
+        this.route('notes');
+    });
 })
 
 App.Store = DS.Store.extend({
-	revision: 12,
-	adapter: 'DS.FixtureAdapter'
+    revision: 12,
+    adapter: 'DS.FixtureAdapter'
 })
 
 App.Note = DS.Model.extend({
-	name: DS.attr('string'),
-	note: DS.attr('string'),
-	votes: DS.attr('number'),
-	username: DS.attr('string'),
-	tags: DS.hasMany('App.Tag'),
+    name: DS.attr('string'),
+    note: DS.attr('string'),
+    votes: DS.attr('number'),
+    username: DS.attr('string'),
+    tags: DS.hasMany('App.Tag'),
     userHasUpvoted: DS.attr('boolean'),
     userHasDownvoted: DS.attr('boolean'),
     created: DS.attr('date'),
 
-	hasPositiveVoteCount: function() {
-		if (this.get('votes') >= 0) {
-			return true;
-		}
-		return false;
-	}.property('votes')
+    hasPositiveVoteCount: function () {
+        if (this.get('votes') >= 0) {
+            return true;
+        }
+        return false;
+    }.property('votes')
 })
 
 App.Tag = DS.Model.extend({
-	name: DS.attr('string'),
-	notes: DS.hasMany('App.Note')
+    name: DS.attr('string'),
+    notes: DS.hasMany('App.Note')
 })
 
 App.NotesIndexRoute = Ember.Route.extend({
-	model: function() {
-		return App.Note.find();
-	}
+    model: function () {
+        return App.Note.find();
+    }
 })
 
 App.ApplicationController = Ember.Controller.extend({
-	composeView: null,
-	isComposeOpen: false,
+    composeView: null,
+    isComposeOpen: false,
 
-	openCompose: function() {
-		this.set('isComposeOpen', true);
+    openCompose: function () {
+        this.set('isComposeOpen', true);
 
-		if (!this.get('composeView')) {
-			var view = App.ComposeView.create({ controller: this });
-			view.appendTo($('#main'));
-			this.set('composeView', view);
-		}
-	},
-	closeCompose: function() {
-		var view = this.get('composeView');
-		if (view) {
-			view.remove();
-			this.set('isComposeOpen', false);
-			this.set('composeView', null);
-		}
-	}
+        if (!this.get('composeView')) {
+            var view = App.ComposeView.create({ controller: this });
+            view.appendTo($('#main'));
+            this.set('composeView', view);
+        }
+    },
+    closeCompose: function () {
+        var view = this.get('composeView');
+        if (view) {
+            view.remove();
+            this.set('isComposeOpen', false);
+            this.set('composeView', null);
+        }
+    }
 })
 
 App.NoteController = Ember.ObjectController.extend({
-    canVote: function() {
+    canVote: function () {
         if (this.get('userHasUpvoted') || this.get('userHasDownvoted')) {
             return false;
         }
         return true;
     }.property('userHasUpvoted', 'userHasDownvoted'),
-    upvote: function() {
+    upvote: function () {
         if (this.get('canVote')) {
             this.incrementProperty('votes');
             this.set('userHasUpvoted', true);
             this.get('store').commit();
         }
     },
-    downvote: function() {
+    downvote: function () {
         if (this.get('canVote')) {
             this.decrementProperty('votes');
             this.set('userHasDownvoted', true);
@@ -100,25 +100,25 @@ App.NoteController = Ember.ObjectController.extend({
     },
 
     isEditingName: false,
-    toggleEditName: function() {
+    toggleEditName: function () {
         this.toggleProperty('isEditingName');
     }
 })
 
 App.NoteNameTextField = Ember.TextField.extend({
-    didInsertElement: function() {
+    didInsertElement: function () {
         this.$().focus();
     },
-    focusOut: function(evt) {
+    focusOut: function (evt) {
         this.set('controller.isEditingName', false);
         this.get('controller.store').commit();
     }
 })
 
 App.ComposeView = Ember.View.extend({
-	templateName: 'compose',
+    templateName: 'compose',
 
-	closeCompose: function() {
-		console.log('Closing compose!');
-	}
+    closeCompose: function () {
+        console.log('Closing compose!');
+    }
 })

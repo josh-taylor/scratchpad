@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Scratchpad</title>
-	<link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <title>Scratchpad</title>
+    <link rel="stylesheet" href="css/style.css">
 
-	<script src="js/libs/jquery-1.9.1.js" type="text/javascript"></script>
-	<script src="js/libs/handlebars-1.0.0-rc.3.js" type="text/javascript"></script>
-	<script src="js/libs/ember-1.0.0-rc.3.js" type="text/javascript"></script>
-	<script src="js/libs/ember-data.js" type="text/javascript"></script>
-	<script src="js/libs/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/app.js" type="text/javascript"></script>
-	<script src="js/fixtures.js" type="text/javascript"></script>
+    <script src="js/libs/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="js/libs/handlebars-1.0.0-rc.3.js"
+            type="text/javascript"></script>
+    <script src="js/libs/ember-1.0.0-rc.3.js" type="text/javascript"></script>
+    <script src="js/libs/ember-data.js" type="text/javascript"></script>
+    <script src="js/libs/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/fixtures.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -29,12 +30,13 @@
                 <ul class="nav nav-pills">
                     <li>{{#linkTo 'notes'}}All Notes{{/linkTo}}</li>
                     <li>{{#linkTo 'tags'}}Tags{{/linkTo}}</li>
-	                <li>{{#linkTo 'search'}}Search{{/linkTo}}</li>
+                    <li>{{#linkTo 'search'}}Search{{/linkTo}}</li>
                 </ul>
             </div>
             <div class="span6">
                 <ul class="nav nav-pills pull-right">
-	                <li><a href="javascript:;" {{action openCompose}} {{bindAttr class="isComposeOpen:active"}}>Add Note</a></li>
+                    <li><a href="javascript:;" {{action openCompose}} {{bindAttr
+                        class="isComposeOpen:active"}}>Add Note</a></li>
                     <li>{{#linkTo 'account'}}My Account{{/linkTo}}</li>
                 </ul>
             </div>
@@ -48,100 +50,116 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="notes/index">
-	<ul class="unstyled notes-list">
-	{{#each note in content}}
-		<li class="row-fluid">
-			<div {{bindAttr class=":span1 :text-center note.hasPositiveVoteCount:text-success:text-error"}}>
-				<h1>{{note.votes}}</h1>
-			</div>
-			<div class="span7">
-	            <h3>
-	                {{#linkTo 'note' note}}{{note.name}}{{/linkTo}}
-	            </h3>
-	            <p>
-	                {{#each tag in note.tags}}
-	                {{#linkTo 'tag' tag}}<span class="label">{{tag.name}}</span>{{/linkTo}}
-	                {{/each}}
-	                &ndash; {{note.username}}
-	            </p>
-			</div>
+    <ul class="unstyled notes-list">
+        {{#each note in content}}
+        <li class="row-fluid">
+            <div
+            {{bindAttr class=":span1 :text-center
+            note.hasPositiveVoteCount:text-success:text-error"}}>
+            <h1>{{note.votes}}</h1>
+            </div>
+            <div class="span7">
+                <h3>
+                    {{#linkTo 'note' note}}{{note.name}}{{/linkTo}}
+                </h3>
+
+                <p>
+                    {{#each tag in note.tags}}
+                    {{#linkTo 'tag' tag}}<span class="label">{{tag.name}}</span>{{/linkTo}}
+                    {{/each}}
+                    &ndash; {{note.username}}
+                </p>
+            </div>
         </li>
-	{{/each}}
-	</ul>
+        {{/each}}
+    </ul>
 </script>
 
 <script type="text/x-handlebars" data-template-name="note">
-	<div class="row-fluid">
-		<div class="span12">
-			<h3>
+    <div class="row-fluid">
+        <div class="span12">
+            <h3>
                 <div class="btn-group">
-                    <button {{action upvote target="controller"}} {{bindAttr class=":btn :btn-mini userHasUpvoted:btn-success userHasUpvoted:disabled userHasDownvoted:disabled"}}>
+                    <button
+                    {{action upvote target="controller"}} {{bindAttr class=":btn
+                    :btn-mini userHasUpvoted:btn-success userHasUpvoted:disabled
+                    userHasDownvoted:disabled"}}>
                     <i class="icon-arrow-up"></i>
                     </button>
-                    <button {{action downvote}} {{bindAttr class=":btn :btn-mini userHasDownvoted:btn-danger userHasDownvoted:disabled userHasUpvoted:disabled"}}>
+                    <button
+                    {{action downvote}} {{bindAttr class=":btn :btn-mini
+                    userHasDownvoted:btn-danger userHasDownvoted:disabled
+                    userHasUpvoted:disabled"}}>
                     <i class="icon-arrow-down"></i>
                     </button>
                 </div>
-                <span {{bindAttr class="hasPositiveVoteCount:text-success:text-error"}}>{{votes}}</span>
+                <span {{bindAttr
+                class="hasPositiveVoteCount:text-success:text-error"}}>{{votes}}</span>
                 &ndash;
-            {{#if isEditingName}}
-				{{view App.NoteNameTextField valueBinding="name"}}
-            {{else}}
+                {{#if isEditingName}}
+                {{view App.NoteNameTextField valueBinding="name"}}
+                {{else}}
                 <span {{action toggleEditName on="click"}}>{{name}}</span>
-            {{/if}}
-			</h3>
-		</div>
-	</div>
-	<div class="row-fluid">
-		<div class="span2">
-			<ul class="nav nav-list well well-small">
-				<li class="nav-header">Actions</li>
-				<li>{{#linkTo 'note.index'}}Information{{/linkTo}}</li>
-				<li>{{#linkTo 'note.delete'}}Delete{{/linkTo}}</li>
-				<li class="divider"></li>
-				<li class="nav-header">Tags</li>
-			{{#each tag in tags}}
-				<li>{{#linkTo 'tag' tag}}{{tag.name}}{{/linkTo}}</li>
-			{{else}}
-				<li>Improve the site by adding a tag</li>
-			{{/each}}
-				<li class="divider"></li>
-				<li><a href="javascript:;">Help</a></li>
-			</ul>
-		</div>
-		<div class="span10">
-			{{{note}}}
-		</div>
-	</div>
+                {{/if}}
+            </h3>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-list well well-small">
+                <li class="nav-header">Actions</li>
+                <li>{{#linkTo 'note.index'}}Information{{/linkTo}}</li>
+                <li>{{#linkTo 'note.delete'}}Delete{{/linkTo}}</li>
+                <li class="divider"></li>
+                <li class="nav-header">Tags</li>
+                {{#each tag in tags}}
+                <li>{{#linkTo 'tag' tag}}{{tag.name}}{{/linkTo}}</li>
+                {{else}}
+                <li>Improve the site by adding a tag</li>
+                {{/each}}
+                <li class="divider"></li>
+                <li><a href="javascript:;">Help</a></li>
+            </ul>
+        </div>
+        <div class="span10">
+            {{{note}}}
+        </div>
+    </div>
 </script>
 
 <script type="text/x-handlebars" data-template-name="compose">
-	<div id="composer">
-		<div class="container">
-			<div class="span8 offset2">
-				<form name="compose" {{action submitNoteForm on="submit"}}>
-					<fieldset>
-						<legend>Add New Note</legend>
-						<div class="row-fluid">
-							<div class="span4">
-								{{view Ember.TextField bindValue="name" placeholder="Name"}}
-								{{view Ember.TextField placeholder="Tags"}}
-							</div>
-							<div class="span8">
-								{{view Ember.TextArea bindValue="content" placeholder="Content"}}
-							</div>
-						</div>
-						<div class="row-fluid">
-							<div class="pull-right">
-								<button type="submit" class="btn btn-success">Submit</button>
-								<button type="button" class="btn btn-danger" {{action closeCompose}}>Cancel</button>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
+    <div id="composer">
+        <div class="container">
+            <div class="span8 offset2">
+                <form name="compose"
+                {{action submitNoteForm on="submit"}}>
+                <fieldset>
+                    <legend>Add New Note</legend>
+                    <div class="row-fluid">
+                        <div class="span4">
+                            {{view Ember.TextField bindValue="name"
+                            placeholder="Name"}}
+                            {{view Ember.TextField placeholder="Tags"}}
+                        </div>
+                        <div class="span8">
+                            {{view Ember.TextArea bindValue="content"
+                            placeholder="Content"}}
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-success">
+                                Submit
+                            </button>
+                            <button type="button" class="btn btn-danger"
+                            {{action closeCompose}}>Cancel</button>
+                        </div>
+                    </div>
+                </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
 </script>
 
 </body>
