@@ -8732,8 +8732,8 @@ a.badge:focus {
 }
 /* line 19, ../sass/style.scss */
 #composer .container textarea {
-  min-width: 460px;
-  max-width: 460px;
+  min-width: 494px;
+  max-width: 494px;
   min-height: 150px;
   max-height: 150px;
 }
