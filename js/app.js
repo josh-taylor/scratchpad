@@ -118,5 +118,12 @@ App.NoteNameTextField = Ember.TextField.extend({
 })
 
 App.ComposeView = Ember.View.extend({
-    templateName: 'compose'
+    templateName: 'compose',
+
+    didInsertElement: function() {
+        $('#main').css('padding-bottom', $('#composer').outerHeight(true));
+    },
+    willDestroyElement: function() {
+        $('#main').css('padding-bottom', 0);
+    }
 })
