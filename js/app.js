@@ -1,4 +1,6 @@
-App = Ember.Application.create();
+App = Ember.Application.createWithMixins({
+    rootElement: '#main'
+});
 
 App.Router.map(function () {
     this.resource('notes', { path: '/' }, function () {
@@ -116,9 +118,5 @@ App.NoteNameTextField = Ember.TextField.extend({
 })
 
 App.ComposeView = Ember.View.extend({
-    templateName: 'compose',
-
-    closeCompose: function () {
-        console.log('Closing compose!');
-    }
+    templateName: 'compose'
 })
