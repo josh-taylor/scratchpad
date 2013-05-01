@@ -2,6 +2,10 @@ App = Ember.Application.createWithMixins({
     rootElement: '#main'
 });
 
+App.Router.reopen({
+    'location': 'history'
+})
+
 App.Router.map(function () {
     this.resource('notes', { path: '/' }, function () {
         this.resource('note', { path: '/notes/:note_id' }, function () {
