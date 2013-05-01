@@ -57,6 +57,8 @@ App.NotesIndexRoute = Ember.Route.extend({
 })
 
 App.ApplicationController = Ember.Controller.extend({
+    needs: ['notesNew'],
+
     composeView: null,
     isComposeOpen: false,
 
@@ -64,9 +66,10 @@ App.ApplicationController = Ember.Controller.extend({
         this.set('isComposeOpen', true);
 
         if (!this.get('composeView')) {
-            var view = App.ComposeView.create({ controller: this });
+            var view = App.ComposeView.create({ controller: this.get('controllers.notesNew') });
             view.appendTo($('#main'));
             this.set('composeView', view);
+            this.get('controllers.notesNew').newRecord();
         }
     },
     closeCompose: function () {
@@ -104,6 +107,27 @@ App.NoteController = Ember.ObjectController.extend({
     isEditingName: false,
     toggleEditName: function () {
         this.toggleProperty('isEditingName');
+    }
+})
+
+App.NotesNewController = Ember.ObjectController.extend({
+    needs: ['application'],
+
+    close: function() {
+        this.get('controllers.application').closeCompose();
+    },
+    newRecord: function() {
+        this.set('content', App.Note.createRecord());
+    },
+    submitCreate: function() {
+        this.set('content.username', 'josh');
+        this.set('content.tags', [1, 2]);
+        this.set('content.votes', 0);
+
+        this.get('store').commit();
+        this.get('target.router').transitionTo('notes.index');
+
+        this.close();
     }
 })
 

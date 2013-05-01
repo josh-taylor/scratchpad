@@ -131,19 +131,16 @@
     <div id="composer">
         <div class="container">
             <div class="span8 offset2">
-                <form name="compose"
-                {{action submitNoteForm on="submit"}}>
+                <form name="compose" {{action submitCreate on="submit" controller="note"}}>
                 <fieldset>
                     <legend>Add New Note</legend>
                     <div class="row-fluid">
                         <div class="span4">
-                            {{view Ember.TextField bindValue="name"
-                            placeholder="Name"}}
-                            {{view Ember.TextField placeholder="Tags"}}
+                            {{view Ember.TextField valueBinding="name" placeholder="Name"}}
+                            {{view Ember.TextField placeholder="Tags" disabled="disabled"}}
                         </div>
                         <div class="span8">
-                            {{view Ember.TextArea bindValue="content"
-                            placeholder="Content"}}
+                            {{view Ember.TextArea valueBinding="view.content" placeholder="Content"}}
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -151,8 +148,7 @@
                             <button type="submit" class="btn btn-success">
                                 Submit
                             </button>
-                            <button type="button" class="btn btn-danger"
-                            {{action closeCompose}}>Cancel</button>
+                            <button type="button" class="btn btn-danger" {{action close}}>Cancel</button>
                         </div>
                     </div>
                 </fieldset>
