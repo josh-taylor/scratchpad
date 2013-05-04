@@ -123,8 +123,6 @@
         <div class="container">
             <div class="span8 offset2">
                 <form name="compose" {{action submitCreate on="submit" controller="note"}}>
-                <fieldset>
-                    <legend>Add New Note</legend>
                     <div class="row-fluid">
                         <div class="span4">
                             {{view Ember.TextField valueBinding="name" placeholder="Name"}}
@@ -142,7 +140,6 @@
                             <button type="button" class="btn btn-danger" {{action close}}>Cancel</button>
                         </div>
                     </div>
-                </fieldset>
                 </form>
             </div>
         </div>

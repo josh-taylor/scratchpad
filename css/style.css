@@ -8737,3 +8737,7 @@ a.badge:focus {
   min-height: 150px;
   max-height: 150px;
 }
+/* line 27, ../sass/style.scss */
+#composer form[name="compose"] {
+  margin-bottom: 0;
+}

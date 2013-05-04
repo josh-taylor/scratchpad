@@ -23,4 +23,8 @@
 			max-height: $textareaHeight;
 		}
 	}
+
+    form[name="compose"] {
+        margin-bottom: 0;
+    }
 }
