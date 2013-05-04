@@ -150,12 +150,14 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="textfield-tags">
+{{#if view.tags}}
     <h6>Tags added:</h6>
     <ul>
     {{#each tag in view.tags}}
         <li>{{tag}}</li>
     {{/each}}
     </ul>
+{{/if}}
 </script>
 
 </body>
