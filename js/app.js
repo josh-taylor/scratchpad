@@ -155,3 +155,16 @@ App.ComposeView = Ember.View.extend({
         $('#main').css('padding-bottom', 0);
     }
 })
+
+App.TagsTextField = Ember.TextField.extend({
+    templateName: 'textfield-tags',
+    tags: [],
+
+    keyUp: function(event) {
+        this.interpretKeyEvents(event);
+        if (event.keyCode == 32 || event.keyCode == 13) {
+            this.get('tags').pushObject(this.get('value').trim());
+            this.set('value', '');
+        }
+    }
+})

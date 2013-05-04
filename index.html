@@ -128,7 +128,7 @@
                     <div class="row-fluid">
                         <div class="span4">
                             {{view Ember.TextField valueBinding="name" placeholder="Name"}}
-                            {{view Ember.TextField placeholder="Tags" disabled="disabled"}}
+                            {{view App.TagsTextField placeholder="Tags"}}
                         </div>
                         <div class="span8">
                             {{view Ember.TextArea valueBinding="note" placeholder="Content"}}
@@ -147,6 +147,15 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="textfield-tags">
+    <h6>Tags added:</h6>
+    <ul>
+    {{#each tag in view.tags}}
+        <li>{{tag}}</li>
+    {{/each}}
+    </ul>
 </script>
 
 </body>
