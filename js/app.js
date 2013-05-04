@@ -132,6 +132,14 @@ App.NotesNewController = Ember.ObjectController.extend({
         this.get('target.router').transitionTo('notes.index');
 
         this.close();
+    },
+
+    calculateBottomPadding: function() {
+        if ($('#composer').length > 0) {
+            $('#main').css('padding-bottom', $('#composer').outerHeight(true));
+        } else {
+            $('#main').css('padding-bottom', 0);
+        }
     }
 })
 
@@ -149,10 +157,10 @@ App.ComposeView = Ember.View.extend({
     templateName: 'compose',
 
     didInsertElement: function() {
-        $('#main').css('padding-bottom', $('#composer').outerHeight(true));
+        this.get('controller').send('calculateBottomPadding');
     },
     willDestroyElement: function() {
-        $('#main').css('padding-bottom', 0);
+        this.get('controller').send('calculateBottomPadding');
     }
 })
 
@@ -166,5 +174,11 @@ App.TagsTextField = Ember.TextField.extend({
             this.get('tags').pushObject(this.get('value').trim());
             this.set('value', '');
         }
-    }
+    },
+
+    onTagsUpdate: function() {
+        Ember.run.next(this, function() {
+            this.get('controller').send('calculateBottomPadding');
+        });
+    }.observes('tags.@each')
 })
